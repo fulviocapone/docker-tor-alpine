@@ -5,7 +5,7 @@ services:
     container_name: tor-proxy
     restart: unless-stopped
     ports:
-      - "4711:4711"
+      - "2090:2090"
       - "8118:8118"
       - "5566:5566"
     environment:
