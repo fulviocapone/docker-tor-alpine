@@ -1,0 +1,25 @@
+version: '3'
+services:
+   tor-proxy:
+    image: fulvio1982/docker-tor-alpine
+    container_name: tor-proxy
+    restart: unless-stopped
+    ports:
+      - "4711:4711"
+      - "8118:8118"
+      - "5566:5566"
+    environment:
+      - "tors=20" #Optional. Integer, number of tor instances to run. (Default: 20)
+      - "new_circuit_period=120" #Optional. Integer, NewCircuitPeriod parameter value in seconds. (Default: 2 minutes)
+      - "max_circuit_dirtiness=600" #Optional. Integer, MaxCircuitDirtiness parameter value in seconds. (Default: 10 minutes)
+      - "circuit_build_timeout=60" #Optional. Integer, CircuitBuildTimeout parameter value in seconds. (Default: 60 seconds)
+      - "privoxy=1" #Optional. Boolean, whatever to run insance of privoxy in front of haproxy.
+      - "privoxy_port=8118" #Optional. Integer, port for privoxy. (Default: 8118)
+      #- "privoxy_permit=" #Optional. Space-separated list of source addresses for permit-access option. (Default: Unset)
+      #- "privoxy_deny=" #Optional. Space-separated list of source addresses for deny-access option. (Default: Unset)
+      - "haproxy_port=5566" #Optional. Integer, port for haproxy. (Default: 5566)
+      - "haproxy_stats=2090" #Optional. Integer, port for haproxy monitor. (Default: 2090)
+      - "haproxy_login=admin" #Optional. BasicAuth config for haproxy monitor. (Default: admin)
+      - "haproxy_pass=M1l4n01982" #Optional. BasicAuth config for haproxy monitor. (Default: admin)
+      #- "test_url=" #Optional. URL for health check throught Tor proxy. (Default: http://google.com)
+      #- "test_status=" #Optional. Integer, HTTP status code for test_url in working case. (Default: 302)
